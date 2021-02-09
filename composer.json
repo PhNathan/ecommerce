@@ -1,8 +1,8 @@
 {
-    "name": "PhNathan/ecommerce",
+    "name": "phnathan/ecommerce",
     "authors": [
         {
-            "name": "phelipe nathan",
+            "name": "phelipe",
             "email": "phelipenathandf8@gmail.com"
         }
     ],
@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "": "vendor\\hcodebr\\php-classes\\src"
+            "Hcode\\": "vendor\\hcodebr\\php-classes\\src"
         }
     }
 }
