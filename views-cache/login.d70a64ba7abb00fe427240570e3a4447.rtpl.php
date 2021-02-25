@@ -67,7 +67,7 @@
     </div>
     <!-- /.social-auth-links -->
 
-    <a href="#">Esqueci minha senha :(</a><br>
+    <a href="/admin/forgot">Esqueci minha senha :(</a><br>
     <a href="register.html" class="text-center">Não tem conta ainda, cadastre-se !!!</a>
 
   </div>
