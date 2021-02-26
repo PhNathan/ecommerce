@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'cc6ca4577d249e2dffc6bdee20cb9ea2e78c30df',
+    'reference' => '497713ed3961201ed1e7f4c82f5445bfbdb0dec1',
     'name' => 'phnathan/ecommerce',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'cc6ca4577d249e2dffc6bdee20cb9ea2e78c30df',
+      'reference' => '497713ed3961201ed1e7f4c82f5445bfbdb0dec1',
     ),
     'phpmailer/phpmailer' => 
     array (
