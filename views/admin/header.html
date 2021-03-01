@@ -58,7 +58,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="/admin" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>Dev</b>Ad</span>
       <!-- logo for regular state and mobile devices -->
@@ -90,7 +90,7 @@ desired effect
                     <a href="#">
                       <div class="pull-left">
                         <!-- User Image -->
-                        <img src="/res/admin/dist/img/foto.jpg" class="img-circle" alt="User Image">
+                        <img src="/res/admin/dist/img/avatar5.png" class="img-circle" alt="User Image">
                       </div>
                       <!-- Message title and timestamp -->
                       <h4>
@@ -176,15 +176,17 @@ desired effect
               <!-- The user image in the navbar-->
               <img src="/res/admin/dist/img/foto.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
+             
+
               <span class="hidden-xs">Phelipe Nathan</span>
-            </a>
+                          </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
                 <img src="/res/admin/dist/img/foto.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                 Phelipe Nathan - Web Developer
+                 
                   <small>Membro desde Fev. 2021</small>
                 </p>
               </li>
@@ -234,7 +236,9 @@ desired effect
           <img src="/res/admin/dist/img/foto.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Phelipe Nathan</p>
+          
+          <p>Phelipe</p>
+          
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>

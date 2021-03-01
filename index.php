@@ -83,6 +83,8 @@ $app->get("/admin/users", function(){
 });
 
 
+
+
 $app->get("/admin/users/create", function(){
 
 	User::verifyLogin();
@@ -119,6 +121,7 @@ $app->get('/admin/users/:iduser', function($iduser) {
    "user"=>$user->getValues()
  ));
 });
+
 
 
 $app->post("/admin/users/create", function () {
@@ -326,11 +329,24 @@ $app->post("/admin/categories/:idcategory", function($idcategory){
 	
 	header('Location: /admin/categories');
 	exit;
-
-
-	
 });
 
+
+$app->get("/categories/:idcategory", function($idcategory){
+
+	$category = new Category();
+
+	$category->get((int)$idcategory);
+
+	$page = new Page();
+
+	$page->setTpl("category" , [
+		'category'=>$category->getValues(),
+		'products'=>[]
+	]);
+
+
+});
 
 $app->run();
 
