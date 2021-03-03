@@ -51,7 +51,7 @@
             </div>
             <div class="form-group">
               <label for="url">URL</label>
-              <input type="desurl" class="form-control" id="desurl" name="desurl">
+              <input type="text" class="form-control" id="desurl" name="desurl">
             </div>
 
           </div>
