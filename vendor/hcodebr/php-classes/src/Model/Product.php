@@ -22,6 +22,8 @@ class Product extends Model {
 
 	}
 
+
+
 	public static function checkList($list)
 	{
 
@@ -36,6 +38,9 @@ class Product extends Model {
 		return $list;
 
 	}
+
+	
+
 
 	public function save()
 	{
