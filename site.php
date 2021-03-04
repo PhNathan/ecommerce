@@ -13,7 +13,7 @@ $app->get('/', function() {
 	$page = new Page();
 
 	$page->setTpl("index", [
-		'products'=>Product::checkList($products)
+		"products" => Product::checkList($products)
 	]);
 
 	
@@ -31,7 +31,7 @@ $app->get("/categories/:idcategory", function($idcategory){
 
 	$page->setTpl("category" , [
 		'category'=>$category->getValues(),
-		'products'=>$category->getProducts()
+		'products'=>Product::checkList($category->getProducts())
 	]);
 
 

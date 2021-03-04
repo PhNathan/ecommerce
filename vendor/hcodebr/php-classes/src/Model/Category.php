@@ -35,18 +35,17 @@ public function save(){
 
 
  public function get($idcategory)
- {
+	{
 
- 	$sql = new Sql();
+		$sql = new Sql();
 
- 	$results = $sql->select("SELECT * FROM tb_categories WHERE idcategory = :idcategory", [
- 		':idcategory'=>$idcategory
- 	]);
+		$results = $sql->select("SELECT * FROM tb_categories WHERE idcategory = :idcategory", [
+			':idcategory'=>$idcategory
+		]);
 
- 	$this->setData($results[0]);
+		$this->setData($results[0]);
 
- }
-
+	}
  public function delete(){
  	$sql = new Sql();
 

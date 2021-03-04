@@ -24,14 +24,11 @@ $app->get("/admin/products/create", function(){
 
 	User::verifyLogin();
 
-	
-
 	$page = new PageAdmin();
 
 	$page->setTpl("products-create");
 
 });
-
 
 $app->post("/admin/products/create", function(){
 
@@ -47,7 +44,6 @@ $app->post("/admin/products/create", function(){
 	exit;
 
 });
-
 
 $app->get("/admin/products/:idproduct", function($idproduct){
 
@@ -84,7 +80,6 @@ $app->post("/admin/products/:idproduct", function($idproduct){
 
 });
 
-
 $app->get("/admin/products/:idproduct/delete", function($idproduct){
 
 	User::verifyLogin();
@@ -97,7 +92,7 @@ $app->get("/admin/products/:idproduct/delete", function($idproduct){
 
 	header('Location: /admin/products');
 	exit;
-});
 
+});
 
 ?>

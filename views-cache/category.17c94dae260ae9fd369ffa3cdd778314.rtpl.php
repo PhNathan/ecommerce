@@ -18,7 +18,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="single-shop-product">
                     <div class="product-upper">
-                        <img src="/products/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
+                        <img src="<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
                     </div>
                     <h2><a href="/products/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></h2>
                     <div class="product-carousel-price">
@@ -39,9 +39,9 @@
                 <div class="product-pagination text-center">
                     <nav>
                         <ul class="pagination">
-                        <?php $counter1=-1;  if( isset($pages) && ( is_array($pages) || $pages instanceof Traversable ) && sizeof($pages) ) foreach( $pages as $key1 => $value1 ){ $counter1++; ?>
-                        <li><a href="<?php echo htmlspecialchars( $value1["link"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["page"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></li>
-                        <?php } ?>
+                        
+                        <li><a href=""></a></li>
+                       
                         </ul>
                     </nav>                        
                 </div>
