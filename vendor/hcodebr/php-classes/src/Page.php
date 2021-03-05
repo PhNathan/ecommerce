@@ -4,6 +4,7 @@ namespace Hcode;
 
 use Rain\Tpl;
 
+
 class Page {
 
 	private $tpl;
@@ -28,12 +29,17 @@ class Page {
 
 		Tpl::configure( $config );
 
+		
 		$this->tpl = new Tpl();
+
+
+		
 
 		if ($this->options['data']) $this->setData($this->options['data']);
 
 		if ($this->options['header'] === true) $this->tpl->draw("header", false);
 
+		
 	}
 
 	public function __destruct()
