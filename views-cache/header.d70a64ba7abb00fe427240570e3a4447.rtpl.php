@@ -178,7 +178,7 @@ desired effect
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
              
 
-              <span class="hidden-xs">Phelipe Nathan</span>
+              <span class="hidden-xs"><?php echo htmlspecialchars( $user["deslogin"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
                           </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -237,7 +237,7 @@ desired effect
         </div>
         <div class="pull-left info">
           
-          <p>Phelipe</p>
+          <p><?php echo htmlspecialchars( $user["deslogin"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
           
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
