@@ -31,31 +31,31 @@ class User extends Model {
 	public static function checkLogin($inadmin = true)
 	{
 
-		if (!isset($_SESSION[User::SESSION])
-			|| 
+		if (
+			!isset($_SESSION[User::SESSION])
+			||
 			!$_SESSION[User::SESSION]
 			||
-			!(int)$_SESSION[User::SESSION]["iduser"] > 0) {
-			//não está logado !!!
+			!(int)$_SESSION[User::SESSION]["iduser"] > 0
+		) {
+			//Não está logado
 			return false;
 
-		}else{
-
+		} else {
 
 			if ($inadmin === true && (bool)$_SESSION[User::SESSION]['inadmin'] === true) {
-				
+
 				return true;
 
+			} else if ($inadmin === false) {
 
-			}else if($inadmin === false){
+				return true;
 
+			} else {
 
-			return true;
-
-			}else{
 				return false;
-			}
 
+			}
 
 		}
 
@@ -97,9 +97,13 @@ class User extends Model {
  public static function verifyLogin($inadmin = true)
 	{
 
-		if (User::checkLogin($inadmin)) {
-			
-			header("Location: /admin/login");
+		if (!User::checkLogin($inadmin)) {
+
+			if ($inadmin) {
+				header("Location: /admin/login");
+			} else {
+				header("Location: /login");
+			}
 			exit;
 
 		}
