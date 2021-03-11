@@ -76,8 +76,10 @@ $app->get("/cart", function(){
 
 	$page->setTpl("cart", [
 		'cart'=>$cart->getValues(),
-		'products'=>$cart->getProducts()
+		'products'=>$cart->getProducts(),
+		'error'=>Cart::getMsgError()
 	]);
+
 });
 
 $app->get("/cart/:product/add", function($idproduct){
@@ -133,4 +135,16 @@ $app->get("/cart/:product/remove", function($idproduct){
 
 });
 
+
+
+$app->post("/cart/freight", function(){
+
+	$cart = Cart::getFromSession();
+
+	$cart->setFreight($_POST['zipcode']);
+
+	header("Location: /cart");
+	exit;
+
+});
 ?>
