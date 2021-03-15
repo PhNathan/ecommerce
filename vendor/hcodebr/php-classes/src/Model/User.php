@@ -13,6 +13,8 @@ class User extends Model {
 	const SESSION = "User";
 	const SECRET = "HcodePhp7_secret";
 	const ERROR = "UserError";
+	const SUCCESS = "UserSuccess";
+	Const ERROR_REGISTER = "UserErrorRegister";
 	const SECRET_IV = "HcodePhp7_Secret_IV";
 
 	public static function getFromSession()
@@ -238,6 +240,8 @@ public static function getForgot($email, $inadmin = true)
 
 				if ($inadmin === true) {
 
+
+
 					$link = "http://www.hcodecommerce.com.br:81/admin/forgot/reset?code=$code";
 
 				} else {
@@ -310,14 +314,7 @@ public static function getForgot($email, $inadmin = true)
 
 	}
 
-	public static function getPasswordHash($password)
-	{
-
-		return password_hash($password, PASSWORD_DEFAULT, [
-			'cost'=>12
-		]);
-
-	}
+	
 
 	public static function setError($msg)
 	{
@@ -345,6 +342,79 @@ public static function getForgot($email, $inadmin = true)
 	}
 
 
+
+	public static function setErrorRegister($msg)
+	{
+
+		$_SESSION[User::ERROR_REGISTER] = $msg;
+
+	}
+
+	public static function getErrorRegister()
+	{
+		$msg = (isset($_SESSION[User::ERROR_REGISTER]) && $_SESSION[User::ERROR_REGISTER]) ? $_SESSION[User::ERROR_REGISTER] : '';
+
+		User::clearErrorRegister();
+
+		return $msg;
+	}
+
+	public static function clearErrorRegister()
+	{
+
+		$_SESSION[User::ERROR_REGISTER] = NULL;
+ 
+	}
+
+	public static function checkLoginExist($login)
+	{
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT * FROM tb_users WHERE deslogin = :deslogin", [
+			':deslogin'=>$login
+
+		]);
+
+		return (count($results) > 0);
+	}
+
+
+
+	public static function getPasswordHash($password)
+	{
+
+		return password_hash($password, PASSWORD_DEFAULT, [
+			'cost'=>12
+		]);
+
+	}
+
+
+
+	public static function setSuccess($msg)
+	{
+
+		$_SESSION[User::SUCCESS] = $msg;
+
+	}
+
+	public static function getSuccess()
+	{
+
+		$msg = (isset($_SESSION[User::SUCCESS]) && $_SESSION[User::SUCCESS]) ? $_SESSION[User::SUCCESS] : '';
+
+		User::clearSuccess();
+
+		return $msg;
+
+	}
+
+	public static function clearSuccess()
+	{
+
+		$_SESSION[User::SUCCESS] = NULL;
+
+	}
 
 
 }
