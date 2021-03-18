@@ -159,26 +159,33 @@ public function get($iduser)
  $data['desperson'] = utf8_encode($data['desperson']);
 }
 
-public function update()
-{
-
-	$sql = new Sql();
-
-	$results = $sql->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
-		":iduser"=>$this->getiduser(),
-		":desperson"=>utf8_decode($this->getdesperson()),
-		":deslogin"=>$this->getdeslogin(),
-		":despassword"=>User::getPasswordHash($this->getdespassword()),
-		":desemail"=>$this->getdesemail(),
-		":nrphone"=>$this->getnrphone(),
-		":inadmin"=>$this->getinadmin()
-	));
-
-	$this->setData($results[0]);
-
-
-
-}
+public function update( $changePassword = true )
+ {
+ 
+    if ( $changePassword ) {
+ 
+       $password = password_hash( $this->getdespassword(), PASSWORD_DEFAULT, [ "cost" => 12 ] );
+ 
+    } else {
+ 
+       $password = $_POST['despassword'];
+ 
+    }
+ 
+    $sql = new Sql();
+    $results = $sql->select( "CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", 
+                                  array( 
+                                  ":iduser"      => $this->getiduser(),
+                                  ":desperson"   => utf8_decode( $this->getdesperson() ),
+                                 ":deslogin"    => $this->getdeslogin(),
+                                 ":despassword" => $password,
+                                 ":desemail"    => $this->getdesemail(),
+                                 ":nrphone"     => $this->getnrphone(),
+                                 ":inadmin"     => $this->getinadmin() ) 
+                            );
+ 
+    $this->setData( $results[ 0 ] );
+ }
 
 
 public function delete()
@@ -366,7 +373,7 @@ public static function getForgot($email, $inadmin = true)
  
 	}
 
-	public static function checkLoginExist($login)
+	public static function checkLoginExists($login)
 	{
 		$sql = new Sql();
 
