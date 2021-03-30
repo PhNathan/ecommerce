@@ -149,15 +149,22 @@ public function save()
 }
 
 public function get($iduser)
-{
- $sql = new Sql();
- $results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser = :iduser", array(
- ":iduser"=>$iduser
- ));
- $this->setData($results[0]);
+	{
 
- $data['desperson'] = utf8_encode($data['desperson']);
-}
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser = :iduser", array(
+			":iduser"=>$iduser
+		));
+
+		$data = $results[0];
+
+		$data['desperson'] = utf8_encode($data['desperson']);
+
+
+		$this->setData($data);
+
+	}
 
 public function update( $changePassword = true )
  {
@@ -445,72 +452,59 @@ public static function getForgot($email, $inadmin = true)
 
 	}
 
+	public static function getPage($page = 1, $itemsPerPage = 10)
+	{
 
-	 public static function getPage($page = 1, $itensPerPage = 5)
- {
+		$start = ($page - 1) * $itemsPerPage;
 
- 	$start = ($page - 1) * $itensPerPage;
+		$sql = new Sql();
 
+		$results = $sql->select("
+			SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_users a 
+			INNER JOIN tb_persons b USING(idperson) 
+			ORDER BY b.desperson
+			LIMIT $start, $itemsPerPage;
+		");
 
- 	$sql = new Sql();
+		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
 
+		return [
+			'data'=>$results,
+			'total'=>(int)$resultTotal[0]["nrtotal"],
+			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+		];
 
- 	$results = $sql->select("
- 				SELECT SQL_CALC_FOUND_ROWS * 
-				FROM tb_users a 
-				INNER JOIN tb_persons b USING(idperson) 
-				ORDER BY b.desperson
-				LIMIT $start, $itensPerPage;
-				");
- 				
- 				
- 				$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+	}
 
- 				return [
- 					'data'=>$results,
- 					'total'=>(int)$resultTotal[0]["nrtotal"],
- 					'pages'=>ceil($resultTotal[0]["nrtotal"] / $itensPerPage)
+	public static function getPageSearch($search, $page = 1, $itemsPerPage = 10)
+	{
 
- 				];
-					
-			
- }
+		$start = ($page - 1) * $itemsPerPage;
 
+		$sql = new Sql();
 
-  public static function getPageSearch($search, $page = 1, $itensPerPage = 5)
- {
+		$results = $sql->select("
+			SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_users a 
+			INNER JOIN tb_persons b USING(idperson)
+			WHERE b.desperson LIKE :search OR b.desemail = :search OR a.deslogin LIKE :search
+			ORDER BY b.desperson
+			LIMIT $start, $itemsPerPage;
+		", [
+			':search'=>'%'.$search.'%'
+		]);
 
- 	$start = ($page - 1) * $itensPerPage;
+		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
 
+		return [
+			'data'=>$results,
+			'total'=>(int)$resultTotal[0]["nrtotal"],
+			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+		];
 
- 	$sql = new Sql();
-
-
- 	$results = $sql->select("
- 				SELECT SQL_CALC_FOUND_ROWS * 
-				FROM tb_users a 
-				INNER JOIN tb_persons b USING(idperson) 
-				WHERE b.desperson LIKE :search OR b.desemail = :search OR a.deslogin LIKE :search
-				ORDER BY b.desperson
-				LIMIT $start, $itensPerPage;
-				", [
-					':search'=>'%'.$search.'%'
-
-				]);
- 				
- 				
- 				$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
-
- 				return [
- 					'data'=>$results,
- 					'total'=>(int)$resultTotal[0]["nrtotal"],
- 					'pages'=>ceil($resultTotal[0]["nrtotal"] / $itensPerPage)
-
- 				];
-					
-			
- }
-
+	} 
+	  
 
 
 }
